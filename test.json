@@ -1,0 +1,12 @@
+{
+  "id": 1,
+  "sub_asset_type": 0,
+  "created_by": "auto",
+  "model": "R750",
+  "raid_type": "无",
+  "os_type": "linux",
+  "os_distribution": "Centos_7.5",
+  "os_release": null,
+  "asset": 1,
+  "hosted_on": null
+}
