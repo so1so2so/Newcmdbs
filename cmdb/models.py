@@ -2,6 +2,9 @@
 from __future__ import unicode_literals
 
 from django.db import models
+from django.contrib.auth.models import (
+    BaseUserManager, AbstractBaseUser, PermissionsMixin
+)
 
 
 # Create your models here.
@@ -97,9 +100,81 @@ class Server(models.Model):
     os_release = models.CharField(u'操作系统版本', max_length=64, blank=True, null=True)
 
     class Meta:
-        verbose_name = '服务器'
-        verbose_name_plural = "服务器"
+        verbose_name = '服务器具体信息'
+        verbose_name_plural = "服务器具体信息"
         # together = ["sn", "asset"]
 
     def __unicode__(self):
         return '%s sn:%s' % (self.asset.name, self.asset.sn)
+
+
+class UserProfileManager(BaseUserManager):
+    def create_user(self, email, name,telephone, password=None):
+        """
+        Creates and saves a User with the given email, date of
+        birth and password.
+        """
+        if not email:
+            raise ValueError('Users must have an email address')
+        if not telephone:
+            raise ValueError('Users must have an telephone ')
+        user = self.model(
+            email=self.normalize_email(email),
+            name=name,
+            telephone=telephone,
+        )
+
+        user.set_password(password)
+        user.save(using=self._db)
+        return user
+
+    def create_superuser(self, email, name, password, telephone):
+        """
+        Creates and saves a superuser with the given email, date of
+        birth and password.
+        """
+        user = self.create_user(
+            email,
+            password=password,
+            name=name,
+            telephone=telephone,
+
+        )
+        user.is_superuser = True
+        user.save(using=self._db)
+        return user
+
+
+class UserProfile(AbstractBaseUser, PermissionsMixin):
+    email = models.EmailField(
+        verbose_name='email address',
+        max_length=255,
+        unique=True,
+    )
+    telephone = models.IntegerField(verbose_name="电话号码")
+    name = models.CharField(max_length=64, verbose_name="姓名")
+    is_active = models.BooleanField(default=True)
+    is_staff = models.BooleanField(default=True)
+    is_admin = models.BooleanField(default=False)
+    objects = UserProfileManager()
+
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = ['name', 'telephone', ]
+
+    def get_full_name(self):
+        # The user is identified by their email address
+        return self.email
+
+    def get_short_name(self):
+        # The user is identified by their email address
+        return self.email
+
+    def __unicode__(self):  # __unicode__ on Python 2
+        return self.name
+
+    class Meta:
+        verbose_name = '用户表'
+        verbose_name_plural = "用户表"
+        permissions = (
+            ('crm_table_list', '可以查看kingadmin每张表里所有的数据'),
+        )
