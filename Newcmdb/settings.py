@@ -39,9 +39,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'cmdb.apps.CmdbConfig',
     'rest_framework',
+    # 'corsheaders',
 ]
 
 MIDDLEWARE = [
+    # 'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -49,6 +51,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'cmdb.Middle.CORSMiddleware',
 ]
 
 ROOT_URLCONF = 'Newcmdb.urls'
@@ -120,7 +123,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
 )
-from rest_framework.renderers import BrowsableAPIRenderer
+# from rest_framework.parsers import FormParser
 # upload files
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
@@ -142,8 +145,17 @@ REST_FRAMEWORK = {
         'rest_framework.renderers.AdminRenderer',
     ],
     # 分页多少大小
-    "PAGE_SIZE":2,
-
+    "PAGE_SIZE": 2,
 
 }
+# from corsheaders.middleware import CorsMiddleware
 AUTH_USER_MODEL = 'cmdb.UserProfile'
+CSRF_COOKIE_NAME = "XCSRF-TOKEN"
+# CORS_ORIGIN_ALLOW_ALL=True
+# ALLOWED_HOSTS = ['*']
+# CORS_ORIGIN_ALLOW_ALL = True
+# CORS_ALLOW_CREDENTIALS = True
+# CORS_EXPOSE_HEADERS = (
+#     'Access-Control-Allow-Origin: *',
+# )
+# CORS_ORIGIN_ALLOW_ALL = True
