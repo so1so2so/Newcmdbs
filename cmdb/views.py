@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 from rest_framework.views import APIView
-from django.views import View
+from django.views.generic.base import View
 from django.shortcuts import render, HttpResponse
 from cmdb import models
 from rest_framework.viewsets import ModelViewSet
@@ -37,15 +37,22 @@ class Login(APIView):
         return HttpResponse("ok")
 
     def post(self, request, *args, **kwargs):
+        ret={'status':200,
+             'code':10001,
+             'data':{}
+             }
         username = request.data['username']
         pwd = request.data['password']
-        print username,pwd
+        # print username,pwd
         # 如何判断用户名和密码对不对
         user = auth.authenticate(username=username, password=pwd)
         if user:
             # ret = user.is_authenticated()
             auth.login(request, user)
-            return HttpResponse("登录成功")
+            ret['status']=400
+            ret['data']='登录成功'
+            return Response(ret)
         else:
-            print "登录失败"
-            return HttpResponse("登录失败,请检查用户名密码")
+            ret['status']=502
+            ret['data']='登录失败,请检查用户名密码'
+            return Response(ret)
