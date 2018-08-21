@@ -15,5 +15,6 @@ class ServerSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Server
         fields = "__all__"
-        # depth  = 2
+        # fields=['id','created_by','model','raid_type','os_type']
+        depth  = 0
 

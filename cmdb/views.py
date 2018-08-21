@@ -11,7 +11,7 @@ from django.contrib import auth
 from cmdb.serial import AssetSerializer
 from cmdb.serial import ServerSerializer
 from cmdb.base_ret_class.base import Ret_class
-
+import uuid
 
 class GetAsset(ModelViewSet):
     queryset = models.Asset.objects.all()
@@ -40,20 +40,23 @@ class Login(APIView):
 
     def post(self, request, *args, **kwargs):
         d = Ret_class()
+        token=uuid.uuid4().hex
         username = request.data['username']
         pwd = request.data['password']
-        # print username,pwd
+        print username,pwd
         # 如何判断用户名和密码对不对
         user = auth.authenticate(username=username, password=pwd)
+        print user
         if user:
+            models.Token.objects.update_or_create(user=user,defaults={'token':token})
             # ret = user.is_authenticated()
             auth.login(request, user)
             d.code=200
-            d.data = '登录成功'
-            d.session_key=request.session.session_key
+            d.message = '登录成功'
+            d.session_key=token
             return Response(d.__dict__)
         else:
             d.code = 404
-            d.data = '登录失败,请检查用户名密码'
+            d.message = '登录失败,请检查用户名密码'
             d.session_key = None
             return Response(d.__dict__)

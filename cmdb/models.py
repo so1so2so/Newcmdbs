@@ -109,7 +109,7 @@ class Server(models.Model):
 
 
 class UserProfileManager(BaseUserManager):
-    def create_user(self, email, name,telephone, password=None):
+    def create_user(self, email, name, telephone, password=None):
         """
         Creates and saves a User with the given email, date of
         birth and password.
@@ -178,3 +178,9 @@ class UserProfile(AbstractBaseUser, PermissionsMixin):
         permissions = (
             ('crm_table_list', '可以查看kingadmin每张表里所有的数据'),
         )
+
+
+class Token(models.Model):
+    user = models.OneToOneField(to="UserProfile")
+    token = models.CharField(max_length=64)
+    expre_date = models.DateTimeField(blank=True, auto_now_add=True)
