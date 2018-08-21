@@ -10,6 +10,7 @@ from rest_framework.response import Response
 from django.contrib import auth
 from cmdb.serial import AssetSerializer
 from cmdb.serial import ServerSerializer
+from cmdb.base_ret_class.base import Ret_class
 
 
 class GetAsset(ModelViewSet):
@@ -34,13 +35,11 @@ class Login(APIView):
 
     def get(self, request, *args, **kwargs):
         # return render(request, '/static/index.html')
+        print request.session.session_key
         return HttpResponse("ok")
 
     def post(self, request, *args, **kwargs):
-        ret={'status':200,
-             'code':10001,
-             'data':{}
-             }
+        d = Ret_class()
         username = request.data['username']
         pwd = request.data['password']
         # print username,pwd
@@ -49,10 +48,12 @@ class Login(APIView):
         if user:
             # ret = user.is_authenticated()
             auth.login(request, user)
-            ret['status']=400
-            ret['data']='登录成功'
-            return Response(ret)
+            d.code=200
+            d.data = '登录成功'
+            d.session_key=request.session.session_key
+            return Response(d.__dict__)
         else:
-            ret['status']=502
-            ret['data']='登录失败,请检查用户名密码'
-            return Response(ret)
+            d.code = 404
+            d.data = '登录失败,请检查用户名密码'
+            d.session_key = None
+            return Response(d.__dict__)
