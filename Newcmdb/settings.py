@@ -145,7 +145,7 @@ REST_FRAMEWORK = {
         'rest_framework.renderers.AdminRenderer',
     ],
     # 分页多少大小
-    "PAGE_SIZE": 2,
+    "PAGE_SIZE": 10,
 
 }
 # from corsheaders.middleware import CorsMiddleware

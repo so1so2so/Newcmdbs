@@ -12,9 +12,10 @@ class AssetSerializer(serializers.ModelSerializer):
 
 
 class ServerSerializer(serializers.ModelSerializer):
+    asset = serializers.CharField(source='asset.name')
+    sub_asset_type=serializers.CharField(source='get_sub_asset_type_display')
     class Meta:
         model = models.Server
-        fields = "__all__"
-        # fields=['id','created_by','model','raid_type','os_type']
-        depth  = 0
-
+        # fields = "__all__"
+        fields = ['asset', 'id', 'created_by', 'model', 'raid_type', 'os_type','sub_asset_type']
+        depth = 0
