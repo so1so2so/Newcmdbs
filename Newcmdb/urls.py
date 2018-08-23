@@ -20,11 +20,11 @@ from django.conf.urls import url, include
 from django.contrib import admin
 from django.views.static import serve
 from Newcmdb.settings import MEDIA_ROOT
-from cmdb import views
+# from cmdb import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^login/', views.Login.as_view(), name="loginx"),
+    # url(r'^login/', views.Login.as_view(), name="loginx"),
     # 配置上传文件的访问处理函数
     url(r'^media/(?P<path>.*)$', serve, {"document_root": MEDIA_ROOT}),
     url(r'^api/', include('cmdb.urls')),

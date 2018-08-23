@@ -8,9 +8,10 @@ router = routers.DefaultRouter()
 router.register(r'GetAsset', views.GetAsset)
 router.register(r'GetServer', views.GetServer)
 
-
+from  cmdb import views
 urlpatterns = [
     url(r'^(?P<version>[v1|v2]+)/', include(router.urls)),
+     url(r'^(?P<version>[v1|v2]+)/auth/$', views.Login.as_view()),
  ]
 
 
