@@ -1,0 +1,13 @@
+---
+- hosts: 192.168.1.11
+  remote_user: user
+  vars:
+    touch_file: zhangneng.txt
+  tasks:
+    - name: touch file
+      shell: "touch /tmp/{{touch_file}}"
+    - name: get date
+      command: date
+      register: date_output
+    - name: get date
+      shell: "echo {{date_output.stdout}}>/tmp/{{touch_file}}"

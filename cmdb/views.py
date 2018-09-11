@@ -14,6 +14,7 @@ from cmdb.base_ret_class.base import Ret_class
 import uuid
 from cmdb.auth.auth import Auth
 
+
 class GetAsset(ModelViewSet):
     queryset = models.Asset.objects.all()
     serializer_class = AssetSerializer
@@ -21,7 +22,7 @@ class GetAsset(ModelViewSet):
 
 
 class GetServer(ModelViewSet):
-    authentication_classes = [Auth,]
+    authentication_classes = [Auth, ]
     queryset = models.Server.objects.all()
     serializer_class = ServerSerializer
     pagination_class = PageNumberPagination
@@ -39,6 +40,7 @@ class Login(APIView):
         # return render(request, '/static/index.html')
         print request.session.session_key
         return HttpResponse("ok")
+
     def post(self, request, *args, **kwargs):
         d = Ret_class()
         token = uuid.uuid4().hex

@@ -1,0 +1,10 @@
+---
+- hosts: 192.168.1.11
+  remote_user: root
+  tasks:
+    - name: get process
+      command: ps -ef|wc -l
+      register: process_count
+      failed_when: process_count<3
+    - name: 创建文件
+      file: path=/tmp/test22 state=touch mode=0700 owner=root group=root

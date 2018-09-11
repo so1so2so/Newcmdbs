@@ -1,0 +1,29 @@
+---
+- hosts: test
+  pre_tasks:
+        - name: change yum Base if need
+          command: wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-6.repo
+  handlers:
+        - name: restart nginx
+          command: /application/nginx/sbin/nginx -s reload
+  tasks:
+      - name: "安装epel源"
+        yum: name={{ item }} state=present
+        with_items:
+              - epel-release
+#              - include: obc.yml
+#       - name: "安装依赖包"
+      - include: phpobc.yml
+      - name: "复制安装包到远端"
+        copy: src=/python/ansible/ dest=/home/key/ owner=root group=root mode=700
+      - name: "关闭防火墙"
+        service: name=iptables state=stopped
+      - name: "开始安装PHP"
+#  - name: "安装PHP,编译安装形式，以脚本方式安装 "
+        script: /python/ansible/software/php.sh
+      - name: "修改配置文件以使nginx支持php"
+        copy: src=/python/ansible/software/nginx.conf dest=/application/nginx/conf/ owner=root group=root mode=644
+        notify:
+              - restart nginx
+      - name: "创建测试文件 查看php是否正常"
+        copy: src=/python/ansible/software/index.php dest=/application/nginx/html/ owner=root group=root mode=644

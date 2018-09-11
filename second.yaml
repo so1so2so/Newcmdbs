@@ -1,0 +1,16 @@
+---
+- hosts: 192.168.1.11
+  remote_user: root
+  tasks:
+    - name: 强行报错
+      command: /bin/false
+      ignore_errors: yes
+
+    - name: 创建文件
+      file: path=/tmp/test22 state=touch mode=0700 owner=root group=root
+#    - debug: msg="{{ item.key  }} is the winner"
+#      with_dict: {
+#      'zhang': {'english': 60,chineses: 80},
+#      'neng': {'english': 50,chineses: 90},
+#      }
+#      when: item.value.english>=10

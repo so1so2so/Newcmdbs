@@ -14,7 +14,7 @@
   </component>
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$" />
-    <orderEntry type="jdk" jdkName="Python 2.7.12 (C:\Python27\python.exe)" jdkType="Python SDK" />
+    <orderEntry type="jdk" jdkName="Remote Python 2.7.5 (sftp://root@192.168.1.50:22/usr/bin/python)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
   <component name="TemplatesService">
