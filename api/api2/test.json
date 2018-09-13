@@ -1,0 +1,78 @@
+{
+  "status": {
+    "study": {
+      "unreachable": 0,
+      "skipped": 0,
+      "changed": 3,
+      "ok": 4,
+      "failed": 0
+    },
+    "docker-client2 ": {
+      "unreachable": 0,
+      "skipped": 0,
+      "changed": 3,
+      "ok": 4,
+      "failed": 0
+    }
+  },
+  "skipped": {},
+  "ok": {
+    "study": {
+      "_ansible_parsed": true,
+      "stderr_lines": [],
+      "changed": true,
+      "end": "2017-11-27 09:38:47.621407",
+      "_ansible_no_log": false,
+      "stdout": "",
+      "cmd": "echo 2017\u5e74 11\u6708 27\u65e5 \u661f\u671f\u4e00 09:38:47 CST>/tmp/zhangneng.txt",
+      "start": "2017-11-27 09:38:47.612939",
+      "delta": "0:00:00.008468",
+      "stderr": "",
+      "rc": 0,
+      "invocation": {
+        "module_args": {
+          "creates": null,
+          "executable": null,
+          "_uses_shell": true,
+          "_raw_params": "echo 2017\u5e74 11\u6708 27\u65e5 \u661f\u671f\u4e00 09:38:47 CST>/tmp/zhangneng.txt",
+          "removes": null,
+          "argv": null,
+          "warn": true,
+          "chdir": null,
+          "stdin": null
+        }
+      },
+      "stdout_lines": []
+    },
+    "docker-client2 ": {
+      "_ansible_parsed": true,
+      "stderr_lines": [],
+      "changed": true,
+      "end": "2018-09-13 21:48:19.455048",
+      "_ansible_no_log": false,
+      "stdout": "",
+      "cmd": "echo 2018\u5e74 09\u6708 13\u65e5 \u661f\u671f\u56db 21:48:18 CST>/tmp/zhangneng.txt",
+      "start": "2018-09-13 21:48:19.452099",
+      "delta": "0:00:00.002949",
+      "stderr": "",
+      "rc": 0,
+      "invocation": {
+        "module_args": {
+          "creates": null,
+          "executable": null,
+          "_uses_shell": true,
+          "_raw_params": "echo 2018\u5e74 09\u6708 13\u65e5 \u661f\u671f\u56db 21:48:18 CST>/tmp/zhangneng.txt",
+          "removes": null,
+          "argv": null,
+          "warn": true,
+          "chdir": null,
+          "stdin": null
+        }
+      },
+      "stdout_lines": []
+    }
+  },
+  "changed": {},
+  "failed": {},
+  "unreachable": {}
+}

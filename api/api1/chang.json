@@ -1,0 +1,43 @@
+{
+  "status": {
+    "192.168.1.11": {
+      "unreachable": 0,
+      "skipped": 0,
+      "changed": 3,
+      "ok": 4,
+      "failed": 0
+    }
+  },
+  "failed": {},
+  "skipped": {},
+  "success": {
+    "192.168.1.11": {
+      "_ansible_parsed": true,
+      "stderr_lines": [],
+      "changed": true,
+      "end": "2018-09-12 23:08:51.608915",
+      "_ansible_no_log": false,
+      "stdout": "",
+      "cmd": "echo 2018年 09月 12日 星期三 23:08:51 CST>/tmp/zhangneng.txt",
+      "start": "2018-09-12 23:08:51.600212",
+      "delta": "0:00:00.008703",
+      "stderr": "",
+      "rc": 0,
+      "invocation": {
+        "module_args": {
+          "creates": null,
+          "executable": null,
+          "_uses_shell": true,
+          "_raw_params": "echo 2018年 09月 12日 星期三 23:08:51 CST>/tmp/zhangneng.txt",
+          "removes": null,
+          "argv": null,
+          "warn": true,
+          "chdir": null,
+          "stdin": null
+        }
+      },
+      "stdout_lines": []
+    }
+  },
+  "unreachable": {}
+}
