@@ -1,0 +1,15 @@
+---
+- hosts: dynamic_host
+  remote_user: root
+  vars:
+    touch_file: zhangneng.txt
+  tasks:
+    - name: etcd server
+      service:
+        name: etcd
+        state:
+    - name: get date
+      command: date
+      register: date_output
+    - name: get date
+      shell: "echo {{date_output.stdout}}>/tmp/{{touch_file}}"

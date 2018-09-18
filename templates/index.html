@@ -15,21 +15,24 @@
 </form>
 <div style="height: 500px;">
 
-        包管理工具
-        <div>{{ result.success.192_168_43_61.ansible_facts.ansible_pkg_mgr }}</div>>
-        系统内核版本:
-        <div>{{ result.success.192_168_43_61.ansible_facts.ansible_kernel }}</div>>
-        内存可用/已用:
-        <div><span>{{ result.success.192_168_43_61.ansible_facts.ansible_memory_mb.real.free }}</span>
-                            <span>{{ result.success.192_168_43_61.ansible_facts.ansible_memory_mb.real.total }}</span>
-    </div>>
-        系统主机名:
-        <div>{{ result.success.192_168_43_61.ansible_facts.ansible_hostname }}</div>
-        IP地址:
-        <div>{% for j in result.success.192_168_43_61.ansible_facts.ansible_all_ipv4_addresses %}
-            {{ j }}
-            {% endfor %}
-            </div>
+    包管理工具
+    <div>{{ result.ansible_pkg_mgr }}</div>
+    >
+    系统内核版本:
+    <div>{{ result.ansible_kernel }}</div>
+    >
+    内存可用/已用:
+    <div><span>{{ result.ansible_memory_mb.real.free }}</span>
+        <span>{{ result.ansible_memory_mb.real.total }}</span>
+    </div>
+    >
+    系统主机名:
+    <div>{{ result.ansible_hostname }}</div>
+    IP地址:
+    <div>{% for j in result.ansible_all_ipv4_addresses %}
+        {{ j }}
+    {% endfor %}
+    </div>
 </div>
 </body>
 </html>
