@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form method="POST" autocomplete="off">
+    <div>IP地址:<input type="text" name="ip"></div>
+    <div>主机名:<input type="text" name="hostname"></div>
+    <div>密码:<input type="password" name="password"></div>
+    <div>端口:<input type="text" name="port"></div>
+    <input type="submit" value="查看信息">
+
+</form>
+<div style="height: 500px;">
+
+        包管理工具
+        <div>{{ result.success.192_168_43_61.ansible_facts.ansible_pkg_mgr }}</div>>
+        系统内核版本:
+        <div>{{ result.success.192_168_43_61.ansible_facts.ansible_kernel }}</div>>
+        内存可用/已用:
+        <div><span>{{ result.success.192_168_43_61.ansible_facts.ansible_memory_mb.real.free }}</span>
+                            <span>{{ result.success.192_168_43_61.ansible_facts.ansible_memory_mb.real.total }}</span>
+    </div>>
+        系统主机名:
+        <div>{{ result.success.192_168_43_61.ansible_facts.ansible_hostname }}</div>
+        IP地址:
+        <div>{% for j in result.success.192_168_43_61.ansible_facts.ansible_all_ipv4_addresses %}
+            {{ j }}
+            {% endfor %}
+            </div>
+</div>
+</body>
+</html>

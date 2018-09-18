@@ -157,9 +157,9 @@ class ANSRunner(object):
 
 if __name__ == '__main__':
     resource1 = [
-        {"hostname": "192.168.1.50","password":123456},
-        {"hostname": "192.168.1.30","password":123456},
-        {"hostname": "192.168.1.31","password":123456},
+        {"hostname": "192.168.43.60","password":123456},
+        # {"hostname": "192.168.1.30","password":123456},
+        # {"hostname": "192.168.1.31","password":123456},
         # {"hostname": "192.168.6.43"},
         # {"hostname": "192.168.1.233"},
     ]
@@ -178,12 +178,12 @@ if __name__ == '__main__':
     # myinvent = MyInventory(self.resource, self.loader, self.variable_manager)
     # rbt = ANSRunner(resource, redisKey='1')
     # rbt = ANSRunner(resource1)
-    # # Ansible Adhoc
+    # # # Ansible Adhoc
     # rbt.run_model(host_list=['test1','default_group'], module_name='shell', module_args="ls /root")
     # data = rbt.get_model_result()
     # print data
     # Ansible playbook
-    rbt = ANSRunner(resource2)
-    rbt.run_playbook(playbook_path=yaml_path)
-    print rbt.get_playbook_result()
+    # rbt = ANSRunner(resource2)
+    # rbt.run_playbook(playbook_path=yaml_path)
+    # print rbt.get_playbook_result()
     # rbt.run_model(host_list=[],module_name='yum',module_args="name=htop state=present")
