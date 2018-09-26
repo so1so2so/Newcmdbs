@@ -26,7 +26,7 @@ SECRET_KEY = 'vgw-uodk7qyzm%84v66rdmf4k2yku16px*(u+^ptr&^l%y3s_*'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['192.168.43.50','127.0.0.1','192.168.1.50']
+ALLOWED_HOSTS = ['192.168.43.50', '127.0.0.1', '192.168.1.50']
 
 # Application definition
 
@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'cmdb.apps.CmdbConfig',
     'rest_framework',
     # 'corsheaders',
+    'django_celery_beat',
 ]
 
 MIDDLEWARE = [
@@ -159,3 +160,6 @@ CSRF_COOKIE_NAME = "XCSRF-TOKEN"
 #     'Access-Control-Allow-Origin: *',
 # )
 # CORS_ORIGIN_ALLOW_ALL = True
+
+CELERY_BROKER_URL = 'redis://127.0.0.1/2'
+CELERY_RESULT_BACKEND = 'redis://127.0.0.1/2'

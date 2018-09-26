@@ -114,3 +114,18 @@ class ansible_playbook(APIView):
     def post(self, request, *args, **kwargs):
         yaml_path_file = os.path.join(yaml_path, 'service_check')
         return render(request, "playbook.html")
+
+
+import tasks
+
+from celery.result import AsyncResult
+
+
+def task_test(request):
+    res = tasks.add.delay(333, 24)
+    print("start running task")
+    # print("async task res", res.get())
+    print("async task res", res.task_id)
+    # print("async task res", res.get())
+    d = AsyncResult(res.task_id)
+    return HttpResponse('res %s' % d.status)

@@ -16,6 +16,7 @@ urlpatterns = [
     url(r'^(?P<version>[v1|v2]+)/auth/$', views.Login.as_view()),
     url(r'^ansible/', views.ansible_ad_host.as_view(), name="ansible_ad_host"),
     url(r'^ansible2/', views.ansible_playbook.as_view(), name="ansible_playbook"),
+    url(r'^task_test/', views.task_test, name="task_test"),
 
 ]
 
